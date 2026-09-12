@@ -14,25 +14,28 @@ class _CounterScreenState extends State<CounterScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Counter Screen'),
-        ),
+        appBar: AppBar(title: const Text('Counter Screen')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            Text('$clickCounter',style: TextStyle(fontSize: 160,fontWeight: FontWeight.w100)),
-            Text('Clicks',style: TextStyle(fontSize: 25))
+              Text(
+                '$clickCounter',
+                style: TextStyle(fontSize: 160, fontWeight: FontWeight.w100),
+              ),
+              Text(
+                'Clicks${clickCounter == 1 ? 'Click' : 'Clicks'}',
+                style: TextStyle(fontSize: 25),
+              ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            setState(() {
-              clickCounter++;
-            });
+            clickCounter++;
+            setState(() {});
           },
-          child: const Icon(Icons.plus_one),
+          child: Icon(Icons.plus_one),
         ),
       ),
     );
