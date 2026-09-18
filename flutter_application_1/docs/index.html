@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arquitectura de Contexto Completo — Prácticas DMI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0f19;
+      --bg-card: #131b2e;
+      --bg-card-hover: #1c2742;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-emerald: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(19, 27, 46, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Navbar Header */
+    header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Diagram Selector Tabs */
+    .tab-bar {
+      display: flex;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      gap: 0.25rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 1.25rem;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.2));
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* Control Buttons */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .action-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Main Content Layout */
+    main {
+      flex: 1;
+      display: flex;
+      position: relative;
+      background: #070a11;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+    }
+
+    /* Information Overlay Banner */
+    .info-banner {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      z-index: 20;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .info-tag {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <div>
+        <div class="brand-title">Arquitectura de Contexto Completo</div>
+        <div class="brand-subtitle">Desarrollo Móvil Integral — GitHub Pages</div>
+      </div>
+    </div>
+
+    <nav class="tab-bar">
+      <button class="tab-btn active" onclick="loadDiagram('./arquitectura-contexto-completo.html', this)">
+        <span>🌐</span> Contexto Completo
+      </button>
+      <button class="tab-btn" onclick="loadDiagram('./arquitectura-contexto-completo.visual-check.html', this)">
+        <span>🔍</span> Verificación Visual
+      </button>
+    </nav>
+
+    <div class="controls">
+      <button class="action-btn" onclick="reloadFrame()" title="Recargar diagrama">
+        🔄 Recargar
+      </button>
+      <a id="open-new-tab" class="action-btn" href="./arquitectura-contexto-completo.html" target="_blank" title="Abrir en nueva pestaña">
+        ↗ Pestaña
+      </a>
+      <button class="action-btn" onclick="toggleFullscreen()" title="Pantalla completa">
+        ⛶ Pantalla Completa
+      </button>
+    </div>
+  </header>
+
+  <main id="main-container">
+    <iframe id="diagram-frame" src="./arquitectura-contexto-completo.html"></iframe>
+
+    <div class="info-banner" id="info-banner">
+      <span class="info-tag">GitHub Pages</span>
+      <span>Diagrama interactivo de arquitectura de contexto completo.</span>
+    </div>
+  </main>
+
+  <script>
+    const frame = document.getElementById('diagram-frame');
+    const newTabLink = document.getElementById('open-new-tab');
+
+    function loadDiagram(url, button) {
+      frame.src = url;
+      newTabLink.href = url;
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    }
+
+    function reloadFrame() {
+      frame.src = frame.src;
+    }
+
+    function toggleFullscreen() {
+      const container = document.getElementById('main-container');
+      if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(err => {
+          alert(`Error al intentar pantalla completa: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -48,7 +48,7 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: counterColor.withOpacity(0.15),
+        backgroundColor: counterColor.withValues(alpha: 0.15),
       ),
       body: Center(
         child: Column(
@@ -79,30 +79,50 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           // Botón de reiniciar
-          FloatingActionButton(
-            heroTag: 'resetBtn',
+          CustomButton(
+            icon: Icons.refresh,
             backgroundColor: Colors.blue,
             onPressed: _reset,
-            child: const Icon(Icons.refresh, color: Colors.white),
           ),
           const SizedBox(height: 12),
           // Botón de restar
-          FloatingActionButton(
-            heroTag: 'decrementBtn',
+          CustomButton(
+            icon: Icons.remove,
             backgroundColor: Colors.red,
             onPressed: _decrement,
-            child: const Icon(Icons.remove, color: Colors.white),
           ),
           const SizedBox(height: 12),
           // Botón de sumar
-          FloatingActionButton(
-            heroTag: 'incrementBtn',
-            backgroundColor: Colors.green,
+          CustomButton(
+            icon: Icons.add,
+            backgroundColor: const Color.fromARGB(255, 57, 124, 59),
             onPressed: _increment,
-            child: const Icon(Icons.add, color: Colors.white),
           ),
         ],
       ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback? onPressed;
+  final Color? backgroundColor;
+
+  const CustomButton({
+    super.key,
+    required this.icon,
+    this.onPressed,
+    this.backgroundColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      heroTag: null,
+      backgroundColor: backgroundColor,
+      onPressed: onPressed,
+      child: Icon(icon, color: Colors.white),
     );
   }
 }

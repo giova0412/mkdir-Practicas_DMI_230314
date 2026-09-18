@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Contexto completo — Aplicación Contador Flutter",
+    "quality_profile": "showcase",
+    "viewBox": [1360, 620]
+  },
+  "components": [
+    { "id": "user", "type": "external", "label": "Usuario", "sublabel": "Táctil", "pos": [30, 250], "size": [150, 76] },
+    { "id": "bootstrap", "type": "frontend", "label": "main.dart", "sublabel": "runApp", "pos": [220, 250], "size": [170, 76] },
+    { "id": "app", "type": "frontend", "label": "MyApp / MaterialApp", "sublabel": "Material 3", "pos": [430, 250], "size": [190, 76] },
+    { "id": "screen", "type": "frontend", "label": "Pantallas de contador", "sublabel": "Functions activa", "pos": [660, 250], "size": [205, 76] },
+    { "id": "state", "type": "backend", "label": "Estado en memoria", "sublabel": "clickCounter", "pos": [905, 250], "size": [195, 76] },
+    { "id": "ui", "type": "frontend", "label": "Scaffold / UI reactiva", "sublabel": "Color reactivo", "pos": [1140, 250], "size": [205, 76] },
+    { "id": "buttons", "type": "frontend", "label": "CustomButton", "sublabel": "+ / − / reset", "pos": [660, 440], "size": [205, 76] },
+    { "id": "flutter", "type": "cloud", "label": "Flutter + Material", "sublabel": "SDK", "pos": [220, 70], "size": [190, 76] },
+    { "id": "fonts", "type": "external", "label": "google_fonts", "sublabel": "Dancing Script", "pos": [1140, 70], "size": [205, 76] },
+    { "id": "platforms", "type": "cloud", "label": "Plataformas objetivo", "sublabel": "6 destinos", "pos": [430, 440], "size": [190, 76] },
+    { "id": "tests", "type": "external", "label": "Pruebas Flutter", "sublabel": "widget_test", "pos": [905, 440], "size": [195, 76] },
+    { "id": "docs", "type": "external", "label": "Documentación y capturas", "sublabel": "Práctica 1", "pos": [1140, 440], "size": [205, 76] }
+  ],
+  "connections": [
+    { "from": "user", "to": "bootstrap", "label": "inicia", "variant": "emphasis", "labelAt": [200, 340] },
+    { "from": "bootstrap", "to": "app", "label": "ejecuta", "labelAt": [410, 340] },
+    { "from": "app", "to": "screen", "label": "define home", "labelAt": [640, 340] },
+    { "from": "screen", "to": "state", "label": "mantiene", "labelAt": [885, 340] },
+    { "from": "state", "to": "ui", "label": "reconstruye", "labelAt": [1120, 340] },
+    { "from": "screen", "to": "buttons", "label": "compone", "fromSide": "bottom", "toSide": "top", "labelAt": [762, 370] },
+    { "from": "buttons", "to": "state", "label": "dispara acciones", "fromSide": "right", "toSide": "bottom", "via": [[885, 478], [885, 380], [1002.5, 380]], "labelAt": [885, 405] },
+    { "from": "flutter", "to": "bootstrap", "label": "provee SDK", "fromSide": "bottom", "toSide": "top", "labelAt": [305, 175] },
+    { "from": "fonts", "to": "ui", "label": "aplica fuente", "fromSide": "bottom", "toSide": "top", "labelAt": [1242, 175] }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Aplicación", "items": ["Incrementa, decrementa o reinicia el contador; el color es verde, rojo o azul según el valor.", "AnimatedDefaultTextStyle y google_fonts aplican Dancing Script.", "El estado es local y temporal en _CounterFunctionsScreenState: no hay API, backend, base de datos ni persistencia."] },
+    { "dot": "violet", "title": "Proyecto", "items": ["CounterFunctionsScreen es la pantalla activa; CounterScreen existe pero no está importada.", "pubspec.yaml declara Flutter, Material Icons, google_fonts, flutter_test y flutter_lints.", "La estructura incluye Android, iOS, web, Windows, macOS y Linux; imagespruebas solo documenta la práctica."] }
+  ]
+}
