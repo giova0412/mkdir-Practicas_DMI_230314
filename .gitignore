@@ -1,0 +1,30 @@
+# Flutter / Dart build artifacts
+**/build/
+**/.dart_tool/
+**/.pub-cache/
+**/.pub/
+
+# Android build artifacts
+**/android/.gradle/
+**/android/app/build/
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/android/local.properties
+
+# iOS / macOS build artifacts
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+
+# IDE & Editor files
+**/.idea/
+**/*.iml
+**/.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
