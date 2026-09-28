@@ -39,4 +39,5 @@ Este repositorio contendrá los resultados de las prácticas de la materia para 
 
 <p align="center">
   <i>Desarrollado por <b>Giovany Raúl Pazos Cruz</b> - 2026</i>
-</p> 
+</p>
+
