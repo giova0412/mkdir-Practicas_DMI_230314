@@ -1,17 +1,45 @@
-# flutter_application_1
+# Práctica 1: Aplicación Contador en Flutter (Counter Functions)
 
-A new Flutter project.
+## Nombre de la Práctica
+**Desarrollo de Aplicación Contador con Funciones Extendidas y Reutilización de Componentes (CustomButton)**
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Descripción de la Práctica
+Esta práctica consiste en el desarrollo de una aplicación móvil en **Flutter** para la materia de *Desarrollo Móvil Integral (DMI)*. 
 
-A few resources to get you started if this is your first Flutter project:
+La aplicación muestra un contador interactivo en pantalla que permite:
+- **Incrementar** el contador en 1 unidad.
+- **Decrementar** el contador en 1 unidad.
+- **Reiniciar** el contador a 0.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Además, incluye cambios dinámicos de interfaz como la variación de color en el texto y la barra superior según el valor actual del contador (verde para valores positivos, rojo para valores negativos y azul para cero), utilizando la tipografía personalizada *Dancing Script* a través del paquete `google_fonts`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Los botones flotantes de acción se refactorizaron aplicando conceptos de **polimorfismo y reutilización de componentes en POO**, creando un único widget personalizado denominado `CustomButton`.
+
+---
+
+## Objetivo de la Práctica
+- Comprender el manejo del estado dinámico en Flutter utilizando `StatefulWidget` y la función `setState()`.
+- Implementar buenas prácticas de arquitectura de software mediante la extracción de widgets reutilizables (`CustomButton`).
+- Aplicar diseño de interfaz dinámico ajustando estilos, colores y fuentes dinámicamente según el estado de la aplicación.
+- Configurar y hacer uso de paquetes externos en Flutter (`google_fonts`).
+
+---
+
+## Resultados Obtenidos
+
+A continuación se presentan las capturas de pantalla de la aplicación en funcionamiento y el diagrama de arquitectura:
+
+### 1. Estado Inicial
+![Resultado Contador 1](./images/image.png)
+
+### 2. Modificación del Contador
+![Resultado Contador 2](./images/image%20copy.png)
+
+### 3. Modificación Adicional
+![Resultado Contador 3](./images/image%20copy%202.png)
+
+### 4. Diagrama de Arquitectura
+![Diagrama Light](./docs/arquitectura-contexto-completo.visual-check.1440x900.light.png)
+![Diagrama Dark](./docs/arquitectura-contexto-completo.visual-check.1440x900.dark.png)
