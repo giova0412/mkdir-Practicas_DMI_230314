@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_application_2/domain/entities/message.dart';
 import 'package:flutter_application_2/presentation/providers/chat_provider.dart';
 import 'package:flutter_application_2/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:flutter_application_2/presentation/widgets/chat/my_message_buble.dart';
 import 'package:flutter_application_2/presentation/widgets/shared/message_field_box.dart';
+import 'package:provider/provider.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -17,7 +17,8 @@ class ChatScreen extends StatelessWidget {
           padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150'),
+              'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+            ),
           ),
         ),
         title: const Text('Mi amor ♥'),

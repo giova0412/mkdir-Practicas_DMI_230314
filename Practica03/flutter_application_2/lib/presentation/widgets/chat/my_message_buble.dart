@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/domain/entities/message.dart';
+import 'package:flutter_application_2/presentation/widgets/chat/message_time_label.dart';
 
 class MyMessageBubble extends StatelessWidget {
   final Message message;
@@ -19,10 +20,20 @@ class MyMessageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text(
-              message.text,
-              style: const TextStyle(color: Colors.white),
+            padding: const EdgeInsets.fromLTRB(20, 10, 14, 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  message.text,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                const SizedBox(height: 4),
+                MessageTimeLabel(
+                  sentAt: message.sentAt,
+                  color: Colors.white.withValues(alpha: 0.75),
+                ),
+              ],
             ),
           ),
         ),

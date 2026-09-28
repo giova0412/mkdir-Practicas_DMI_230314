@@ -12,20 +12,27 @@ class YesNoModel {
   final String image;
 
   factory YesNoModel.fromJsonMap(Map<String, dynamic> json) => YesNoModel(
-        answer: json["answer"],
-        forced: json["forced"],
-        image: json["image"],
+        answer: json['answer'] as String,
+        forced: json['forced'] as bool,
+        image: json['image'] as String,
       );
 
   Map<String, dynamic> toJson() => {
-        "answer": answer,
-        "forced": forced,
-        "image": image,
+        'answer': answer,
+        'forced': forced,
+        'image': image,
+      };
+
+  String get displayText => switch (answer) {
+        'yes' => 'Sí',
+        'no' => 'No',
+        'maybe' => 'Tal vez',
+        _ => answer,
       };
 
   Message toMessageEntity() => Message(
-    text: answer == 'yes' ? 'Si' : 'No', 
-    fromWho: FromWho.hers,
-    imageUrl: image
-  );
+        text: displayText,
+        fromWho: FromWho.hers,
+        imageUrl: image,
+      );
 }

@@ -16,29 +16,30 @@ class ChatProvider extends ChangeNotifier {
 
     final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
-
-    if (text.endsWith('?')) {
-      herReply();
-    }
-
     notifyListeners();
-    moveScrollToBottom();
+    await moveScrollToBottom();
+
+    if (text.trim().endsWith('?')) {
+      await herReply();
+    }
   }
 
   Future<void> herReply() async {
     final herMessage = await getYesNoAnswer.getAnswer();
     messageList.add(herMessage);
     notifyListeners();
-
-    moveScrollToBottom();
+    await moveScrollToBottom();
   }
 
   Future<void> moveScrollToBottom() async {
     await Future.delayed(const Duration(milliseconds: 100));
 
-    chatScrollController.animateTo(
-        chatScrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut);
+    if (!chatScrollController.hasClients) return;
+
+    await chatScrollController.animateTo(
+      chatScrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
   }
 }
