@@ -45,5 +45,4 @@ A continuación se presentan las capturas de pantalla de la aplicación en funci
 
 
 
-![Diagrama Light](./docs/arquitectura-contexto-completo.visual-check.1440x900.light.png)
-![Diagrama Dark](./docs/arquitectura-contexto-completo.visual-check.1440x900.dark.png)
+
