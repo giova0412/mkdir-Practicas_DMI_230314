@@ -48,7 +48,7 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: counterColor.withOpacity(0.15),
+        backgroundColor: counterColor.withValues(alpha: 0.15),
       ),
       body: Center(
         child: Column(
