@@ -46,3 +46,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Local secrets (use assets/config/env.example as template)
+.env
+.env.local

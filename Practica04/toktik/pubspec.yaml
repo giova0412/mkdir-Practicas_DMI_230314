@@ -29,11 +29,16 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animate_do: ^3.0.2
+  audioplayers: ^6.8.1
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.2.1
+  google_fonts: ^6.2.1
+  http: ^1.2.2
   intl: ^0.20.2
   provider: ^6.1.5+1
+  shared_preferences: ^2.3.3
   video_player: ^2.9.2
 
 dev_dependencies:
@@ -60,14 +65,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/videos/1.mp4
-    - assets/videos/2.mp4
-    - assets/videos/3.mp4
-    - assets/videos/4.mp4
-    - assets/videos/5.mp4
-    - assets/videos/6.mp4
-    - assets/videos/7.mp4
-    - assets/videos/8.mp4
+    - assets/videos/
+    - assets/logos/
+    - assets/audio/
+    - assets/config/env
+    - assets/config/env.example
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
