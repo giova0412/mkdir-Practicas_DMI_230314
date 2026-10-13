@@ -188,7 +188,41 @@ class _CardType4 extends StatelessWidget {
           Image.network(
             'https://picsum.photos/id/${elevation.toInt()}/600/350',
             height: 350,
+            width: double.infinity,
             fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return SizedBox(
+                height: 350,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
+                ),
+              );
+            },
+            errorBuilder: (context, error, stackTrace) {
+              return const SizedBox(
+                height: 350,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.broken_image_outlined, size: 48),
+                      SizedBox(height: 8),
+                      Text('No se pudo cargar la imagen\nRevisa tu conexión'),
+                      Text(
+                        '(picsum.photos)',
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
 
           Align(

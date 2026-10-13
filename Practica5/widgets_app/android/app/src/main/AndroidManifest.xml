@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Necesario para cargar imágenes de internet (picsum) en release -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="widgets_app"
         android:name="${applicationName}"
