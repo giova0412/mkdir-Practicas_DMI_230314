@@ -79,7 +79,7 @@ flutter build apk --release
 
 ### 🔗 Enlace de acceso
 
-> **Enlace Appetize:** *(pendiente — pegar aquí el link `https://appetize.io/app/XXXX` tras publicar el APK)*
+🚀 **[Probar VidFlow en Appetize.io](https://appetize.io/app/b_wokojfmj4z45tkwwwozd73neb4)**
 
 ### Pruebas funcionales (checklist)
 
