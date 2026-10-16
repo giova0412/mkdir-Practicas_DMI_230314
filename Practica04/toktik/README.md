@@ -47,9 +47,9 @@ Principales características implementadas:
 ![Brand Sheet](./assets/logos/vidflow_brand_sheet.jpg)
 
 ### 2. Video de Evidencia
-🎬 **[Ver video de evidencia](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-1937-02.2638263.mp4)**
+🎬 **[Ver video completo de evidencia](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-1937-02.2638263.mp4)** (clic en la imagen para abrirlo)
 
-<video src="https://raw.githubusercontent.com/giova0412/mkdir-Practicas_DMI_230314/Practica04/Practica04/toktik/assets/evidencias/20261016-1937-02.2638263.mp4" controls width="360"></video>
+[![Evidencia VidFlow](./assets/evidencias/evidencia_preview.gif)](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-1937-02.2638263.mp4)
 
 > El video muestra el feed vertical funcionando, los controles play/pausa visibles y la barra para adelantar/atrasar cada video.
 
