@@ -81,3 +81,25 @@ Describe la arquitectura limpia completa con red.
 ![Diagrama Repository Dark](./docs/arquitectura-toktik-repository-datasources.visual-check.1440x900.dark.png)
 
 > Diagramas interactivos: ver links de GitHub Pages al inicio de este README. Generados con la skill Archify (validación showcase 9/9, 0 errores, 0 warnings; spec + artifact con SHA-256 en el receipt de `deliver`).
+
+---
+
+### 4. Publicación en Appetize.io
+
+🚀 **[Probar VidFlow en Appetize.io](https://appetize.io/app/b_wokojfmj4z45tkwwwozd73neb4)**
+
+Publicación para demostración y pruebas en Android virtual desde el navegador (sin Google Play).
+
+```bash
+flutter analyze        # sin issues
+flutter test           # 6/6 pass
+flutter build apk --release
+```
+
+| APK | Valor |
+| :--- | :--- |
+| Archivo | `build/app/outputs/flutter-apk/app-release.apk` (no se versiona: 403.6 MB > límite GitHub) |
+| SHA-1 | `83522bb78dad4c376907dd24b8ca0829208b67e6` |
+| Versión / ID | 1.0.0+1 · `com.example.toktik` |
+
+**Probar:** abrir el enlace, pulsar ▶️, verificar feed vertical, controles play/pausa + barra, tabs Discover/For You/Favorites, like persistente y temas por temporada. Probar en 2 dispositivos (ej. Pixel 8 Android 14 y Galaxy A54 Android 13) y guardar capturas como evidencia.
