@@ -47,9 +47,13 @@ Principales características implementadas:
 ![Brand Sheet](./assets/logos/vidflow_brand_sheet.jpg)
 
 ### 2. Video de Evidencia
-🎬 **[Ver video completo de evidencia](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-1937-02.2638263.mp4)** (clic en la imagen para abrirlo)
+🎬 **[Ver video completo de evidencia (32s)](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-2007-34.7479992.mp4)** (clic en la imagen para abrirlo)
 
-[![Evidencia VidFlow](./assets/evidencias/evidencia_preview.gif)](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-1937-02.2638263.mp4)
+[![Evidencia VidFlow](./assets/evidencias/evidencia_foryou_temas.gif)](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-2007-34.7479992.mp4)
+
+> La vista previa muestra el corte con la pestaña **For You** y el **cambio de temas** (Normal → Halloween → Christmas).
+> ✂️ **[Ver corte For You + temas (20s)](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/evidencia_foryou_temas.mp4)**
+> 🎞️ [Video adicional (92s)](https://github.com/giova0412/mkdir-Practicas_DMI_230314/blob/Practica04/Practica04/toktik/assets/evidencias/20261016-1937-02.2638263.mp4)
 
 > El video muestra el feed vertical funcionando, los controles play/pausa visibles y la barra para adelantar/atrasar cada video.
 
