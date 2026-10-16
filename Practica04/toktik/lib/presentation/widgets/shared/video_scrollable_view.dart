@@ -101,7 +101,7 @@ class _VideoScrollableViewState extends State<VideoScrollableView> {
               ),
             ),
             Positioned(
-              bottom: 40,
+              bottom: 110,
               right: 16,
               child: VideoButtons(
                 video: video,

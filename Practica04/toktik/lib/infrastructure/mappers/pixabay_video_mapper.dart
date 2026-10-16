@@ -36,10 +36,12 @@ class PixabayVideoMapper {
     );
   }
 
-  /// Prefiere medium (640px, liviano) y si no hay, small/tiny/large.
+  /// Prefiere tiny/small (livianos para emulador) y solo si no hay usa medium.
+  /// Se evita 'large' a propósito: en vertical es 2160x3840/4096 y el
+  /// decoder del emulador (goldfish) marca NoSupport / Format exceeds.
   static String? _pickFastMp4(Map<String, dynamic>? videos) {
     if (videos == null) return null;
-    for (final key in ['medium', 'small', 'tiny', 'large']) {
+    for (final key in ['tiny', 'small', 'medium']) {
       final v = videos[key] as Map<String, dynamic>?;
       final url = v?['url'] as String?;
       if (url != null && url.startsWith('http')) return url;

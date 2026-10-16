@@ -16,15 +16,25 @@ class GiphyVideoMapper {
     final pageUrl = item['url'] as String? ?? 'https://giphy.com/gifs/$id';
 
     final images = item['images'] as Map<String, dynamic>?;
-    final original = images?['original'] as Map<String, dynamic>?;
-    final fixedHeight = images?['fixed_height'] as Map<String, dynamic>?;
+    // En emulador se prefieren variantes chicas: original es pesado.
+    String? mp4;
+    for (final key in [
+      'fixed_height_small',
+      'fixed_width_small',
+      'downsized_small',
+      'fixed_height',
+      'downsized',
+      'original',
+    ]) {
+      final variant = images?[key] as Map<String, dynamic>?;
+      final candidate = variant?['mp4'] as String?;
+      if (candidate != null && candidate.startsWith('http')) {
+        mp4 = candidate;
+        break;
+      }
+    }
     final still = images?['fixed_height_still'] as Map<String, dynamic>?;
     final preview = images?['preview_gif'] as Map<String, dynamic>?;
-
-    String? mp4 = original?['mp4'] as String?;
-    if (mp4 == null || !mp4.startsWith('http')) {
-      mp4 = fixedHeight?['mp4'] as String?;
-    }
     String thumb = (still?['url'] as String?) ?? '';
     if (!thumb.startsWith('http')) {
       thumb = (preview?['url'] as String?) ?? '';

@@ -30,6 +30,32 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
   bool _hasError = false;
   bool _isLoading = true;
 
+  bool get _isPlaying => _controller?.value.isPlaying ?? false;
+
+  void _onVideoUpdate() {
+    if (!mounted) return;
+    // Refresca icono play/pausa y tiempos/barra de progreso.
+    setState(() {});
+  }
+
+  void _togglePlayPause() {
+    final controller = _controller;
+    if (controller == null || !controller.value.isInitialized) return;
+    if (controller.value.isPlaying) {
+      controller.pause();
+    } else {
+      controller.play();
+    }
+    setState(() {});
+  }
+
+  String _formatDuration(Duration d) {
+    final totalSeconds = d.inSeconds < 0 ? 0 : d.inSeconds;
+    final minutes = totalSeconds ~/ 60;
+    final seconds = totalSeconds % 60;
+    return '$minutes:${seconds.toString().padLeft(2, '0')}';
+  }
+
   @override
   void initState() {
     super.initState();
@@ -58,6 +84,9 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
       }
       // Libera el anterior antes de asignar el nuevo.
       try {
+        _controller?.removeListener(_onVideoUpdate);
+      } catch (_) {}
+      try {
         await _controller?.dispose();
       } catch (_) {}
       if (!mounted) {
@@ -67,6 +96,7 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
         return;
       }
       _controller = controller;
+      _controller!.addListener(_onVideoUpdate);
       // Timeout amplio: el emulador es lento, pero no eterno.
       // Si tarda >20s, se muestra Reintentar en vez de spinner infinito.
       await controller.initialize().timeout(const Duration(seconds: 20));
@@ -117,6 +147,9 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
 
   @override
   void dispose() {
+    try {
+      _controller?.removeListener(_onVideoUpdate);
+    } catch (_) {}
     _controller?.dispose();
     super.dispose();
   }
@@ -191,15 +224,11 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
       );
     }
 
+    final position = controller.value.position;
+    final duration = controller.value.duration;
+
     return GestureDetector(
-      onTap: () {
-        if (controller.value.isPlaying) {
-          controller.pause();
-        } else {
-          controller.play();
-        }
-        setState(() {});
-      },
+      onTap: _togglePlayPause,
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -212,12 +241,121 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
             ),
           ),
           VideoBackground(stops: const [0.75, 1.0]),
+
+          // Icono grande de play cuando está en pausa (visible siempre que pausa).
+          if (!_isPlaying)
+            Center(
+              child: GestureDetector(
+                onTap: _togglePlayPause,
+                child: Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white70, width: 1.5),
+                  ),
+                  child: const Icon(
+                    Icons.play_arrow,
+                    color: Colors.white,
+                    size: 56,
+                  ),
+                ),
+              ),
+            ),
+
+          // Descripción: subida para no quedar tapada por la barra de controles.
           Positioned(
-            bottom: 28,
+            bottom: 96,
             left: 16,
             child: ExpandableDescription(
               title: widget.title,
               description: widget.description,
+            ),
+          ),
+
+          // Barra inferior: botón play/pausa + tiempos + progreso para adelantar.
+          // El GestureDetector interno evita que tocar los controles alterne
+          // dos veces el play/pausa por el onTap del fondo.
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: GestureDetector(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withValues(alpha: 0.75),
+                    ],
+                  ),
+                ),
+                padding: EdgeInsets.only(
+                  left: 8,
+                  right: 76, // deja libre la columna de botones (like/mute).
+                  top: 12,
+                  bottom:
+                      MediaQuery.of(context).padding.bottom + 10,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        // Botón play / pausa visible.
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: _togglePlayPause,
+                            borderRadius: BorderRadius.circular(24),
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: const BoxDecoration(
+                                color: Colors.black54,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                _isPlaying
+                                    ? Icons.pause
+                                    : Icons.play_arrow,
+                                color: Colors.white,
+                                size: 26,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          '${_formatDuration(position)} / ${_formatDuration(duration)}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            shadows: [
+                              Shadow(
+                                  blurRadius: 6, color: Colors.black87),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 2),
+                    // Barra de progreso: toca o arrastra para adelantar/atrasar.
+                    VideoProgressIndicator(
+                      controller,
+                      allowScrubbing: true,
+                      colors: const VideoProgressColors(
+                        playedColor: Colors.redAccent,
+                        bufferedColor: Colors.white38,
+                        backgroundColor: Colors.white24,
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
