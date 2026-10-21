@@ -101,6 +101,8 @@ Instalar y configurar correctamente todas las herramientas necesarias para desar
 
 ## Inicio Rápido
 
+> Antes de levantar el stack crea un archivo `.env` en la raíz con las variables obligatorias (ver [Anexo B](#anexo-b--docker-composeyml)). Sin ellas Docker Compose aborta el arranque.
+
 ```bash
 # 1. Levantar PostgreSQL, MongoDB, Keycloak y la API
 docker compose up -d
@@ -123,6 +125,8 @@ flutter run
 | MongoDB | 27017 | `localhost:27017` |
 | Keycloak | 8080 | <http://localhost:8080> |
 | API (FastAPI) | 8000 | <http://localhost:8000> · Swagger en `/docs` · ReDoc en `/redoc` |
+
+> 💡 En el `docker-compose.yml` del [Anexo B](#anexo-b--docker-composeyml) los servicios se publican en una sola URL (`http://localhost:8085`), con Keycloak bajo `/auth` y la API bajo `/api`; PostgreSQL y MongoDB quedan en la red privada.
 
 > ⚠️ Las credenciales del manual (`admin` / `admin123`) son solo para desarrollo local. **No las uses en producción.**
 
@@ -178,6 +182,48 @@ KEYCLOAK_CLIENT_ID=app-movil-client
 | La app no conecta con Keycloak | Verificar que la *redirect URI* del cliente coincida exactamente con la de la app. |
 | JWT rechazado por el backend | Revisar que *issuer* y *audience* coincidan con los del Realm. |
 | Contenedor que se reinicia | Revisar variables de entorno y `docker compose logs -f <servicio>`. |
+
+---
+
+## Anexo B · `docker-compose.yml`
+
+Archivo completo disponible en [`./docker-compose.yml`](./docker-compose.yml) (proyecto base: <https://github.com/JFFA25/backend-entorno-dev>).
+
+### Servicios definidos
+
+| Servicio | Imagen / build | Puerto publicado | Función |
+| :--- | :--- | :-: | :--- |
+| `postgres` | `postgres:17-alpine` | 5432 (red interna) | Base relacional + base de Keycloak, con `init` en `docker-entrypoint-initdb.d`. |
+| `mongo` | `mongo:7` | 27017 (red interna) | Base NoSQL para documentos. |
+| `keycloak` | `quay.io/keycloak/keycloak:26.8.0` | 8085 vía proxy | IAM (OAuth 2.0 / OIDC) sobre PostgreSQL, con import del realm `app-movil`. |
+| `api` | build `./api` (FastAPI) | 8000 (red interna) | API REST documentada con Swagger/OpenAPI. |
+| `flutter-web` | build `web/Dockerfile` (nginx) | **8085** | Único servicio publicado: sirve la web Flutter y hace *proxy* a `/api` y `/auth`. |
+
+Todas las redes se aíslan en la red privada `private`; los volúmenes `postgres_data` y `mongo_data` persisten los datos.
+
+### Variables de entorno obligatorias (`.env`)
+
+```env
+POSTGRES_PASSWORD=change-me
+KEYCLOAK_DB_PASSWORD=change-me
+MONGO_PASSWORD=change-me
+KEYCLOAK_ADMIN_PASSWORD=change-me
+```
+
+| Variable | Requerida | Valor por defecto | Descripción |
+| :--- | :-: | :--- | :--- |
+| `POSTGRES_USER` | No | `stack_admin` | Usuario owner de PostgreSQL. |
+| `POSTGRES_PASSWORD` | **Sí** | — | Contraseña del usuario de PostgreSQL. |
+| `POSTGRES_DB` | No | `app_db` | Base de datos de la aplicación. |
+| `MONGO_USER` | No | `stack_admin` | Usuario root de MongoDB. |
+| `MONGO_PASSWORD` | **Sí** | — | Contraseña de MongoDB. |
+| `KEYCLOAK_DB_PASSWORD` | **Sí** | — | Contraseña del usuario `keycloak` en PostgreSQL. |
+| `KEYCLOAK_ADMIN` | No | `admin` | Administrador inicial de Keycloak. |
+| `KEYCLOAK_ADMIN_PASSWORD` | **Sí** | — | Contraseña del administrador de Keycloak. |
+| `PUBLIC_BASE_URL` | No | `http://localhost:8085` | URL pública (afecta `KC_HOSTNAME` y el build de Flutter web). |
+| `WEB_PORT` | No | `8085` | Puerto host del servicio `flutter-web`. |
+
+> 🔒 El archivo `.env` **nunca** se versiona; solo se comparte un `.env.example` con valores de relleno.
 
 ---
 
