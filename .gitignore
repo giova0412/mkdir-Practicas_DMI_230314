@@ -1,4 +1,5 @@
 # Flutter / Dart build artifacts
+.env
 **/build/
 **/.dart_tool/
 **/.pub-cache/
