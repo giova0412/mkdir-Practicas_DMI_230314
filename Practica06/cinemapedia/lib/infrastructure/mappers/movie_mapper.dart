@@ -3,21 +3,25 @@ import 'package:cinemapedia/infrastructure/models/moviedb_movie.dart';
 
 class MovieMapper {
 
-  static Movie movieDBToEntity( MovieMovieDB movieDB ) => Movie(
-    adult:            movieDB.adult,
-    backdropPath:     movieDB.backdropPath.isNotEmpty ? movieDB.backdropPath : 'no-backdrop',
-    genreIds:         movieDB.genreIds.map((genre) => genre.toString()).toList(),
-    id:               movieDB.id,
-    originalLanguage: movieDB.originalLanguage,
-    originalTitle:    movieDB.originalTitle,
-    overview:         movieDB.overview,
-    popularity:       movieDB.popularity,
-    posterPath:       movieDB.posterPath.isNotEmpty ? movieDB.posterPath : 'no-poster',
-    releaseDate:      DateTime.tryParse(movieDB.releaseDate) ?? DateTime.now(),
-    title:            movieDB.title,
-    video:            movieDB.video,
-    voteAverage:      movieDB.voteAverage,
-    voteCount:        movieDB.voteCount,
+  static Movie movieDBToEntity(MovieMovieDB moviedb) => Movie(
+    adult:            moviedb.adult,
+    backdropPath:     (moviedb.backdropPath != '')
+                        ? 'https://image.tmdb.org/t/p/w500${ moviedb.backdropPath }'
+                        : 'assets/image.png',
+    genreIds:         moviedb.genreIds.map((e) => e.toString()).toList(),
+    id:               moviedb.id,
+    originalLanguage: moviedb.originalLanguage,
+    originalTitle:    moviedb.originalTitle,
+    overview:         moviedb.overview,
+    popularity:       moviedb.popularity,
+    posterPath:       (moviedb.posterPath != '')
+                        ? 'https://image.tmdb.org/t/p/w500${ moviedb.posterPath }'
+                        : 'assets/image.png',
+    releaseDate:       moviedb.releaseDate,
+    title:            moviedb.title,
+    video:            moviedb.video,
+    voteAverage:      moviedb.voteAverage,
+    voteCount:        moviedb.voteCount,
   );
 
 }

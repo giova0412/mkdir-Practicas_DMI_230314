@@ -2,6 +2,7 @@ import 'package:cinemapedia/config/theme/app_theme.dart';
 import 'package:cinemapedia/config/theme/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,10 +16,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme().getTheme(),
-      routerConfig: appRouter,
+    return ProviderScope(
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme().getTheme(),
+        routerConfig: appRouter,
+      ),
     );
   }
 }
