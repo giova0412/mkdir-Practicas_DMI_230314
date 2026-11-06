@@ -1,38 +1,44 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cinemapedia/config/i18n/app_strings.dart';
+import 'package:cinemapedia/presentation/widgets/shared/cinemapedia_logo.dart';
+
 
 class FullScreenLoader extends StatelessWidget {
   const FullScreenLoader({super.key});
-
-  Stream<String> getLoadingMessages() {
-    final messages = <String>[
-      'Cargando películas',
-      'Comprando palomitas de maíz',
-      'Cargando populares',
-      'Llamando a mi novia',
-      'Ya mero...',
-      'Esto está tardando más de lo esperado :(',
-    ];
-
-    return Stream.periodic(const Duration(milliseconds: 1200), (step) {
+  
+  Stream<String> getLoadingMessages( List<String> messages ) {
+    return Stream.periodic( const Duration(milliseconds: 1200), (step) {
       return messages[step];
     }).take(messages.length);
   }
 
+
   @override
   Widget build(BuildContext context) {
+
+    final t = AppStrings.of(context);
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Espere por favor'),
+          Pulse(
+            infinite: true,
+            duration: const Duration(milliseconds: 1400),
+            child: const CinemapediaLogo(size: 72),
+          ),
+          const SizedBox(height: 20),
+          Text(t.pleaseWait),
           const SizedBox(height: 10),
-          const CircularProgressIndicator(strokeWidth: 2),
-          const SizedBox(height: 10),
-          StreamBuilder<String>(
-            stream: getLoadingMessages(),
+
+          StreamBuilder(
+            stream: getLoadingMessages( t.loadingMessages ),
             builder: (context, snapshot) {
-              if (!snapshot.hasData) return const Text('Cargando...');
-              return Text(snapshot.data!);
+              if ( !snapshot.hasData ) return Text(t.loading);
+              
+              return Text( snapshot.data! );
             },
           ),
         ],
