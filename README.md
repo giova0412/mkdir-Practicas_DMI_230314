@@ -35,6 +35,18 @@ Este repositorio contendrá los resultados de las prácticas de la materia para 
 | **2** | [Mi Primer Aplicación Móvil con Flutter](./Practica2/flutter_application_1) | Codificar la app móvil en el framework de Flutter manejando Stateless y Stateful Widgets | 25% | 🟢 Concluida |
 | **3** | [Aplicación Móvil Flutter - Chat App](./Practica03/flutter_application_2) | Desarrollo de interfaz de chat interactiva utilizando widgets personalizados en Flutter | 25% | 🟢 Concluida |
 | **4** | [Aplicación Móvil Flutter - TokTik VidFlow](./Practica04/toktik) | Clon de TikTok con feed vertical, reproducción con controles, likes persistentes y arquitectura limpia con Provider + Repository + DataSources | 25% | 🟢 Concluida |
+| **5** | [Caja de Widgets - Widgets App](./Practica5/widgets_app) | Aplicación con catálogo de widgets Material 3, gestión de estado con Riverpod y navegación declarativa con GoRouter | 25% | 🟢 Concluida |
+| **Extra** | [Manual de Instalación del Entorno de Desarrollo Móvil](./ManualFlutter) | Guía paso a paso para instalar y configurar Flutter, Docker, PostgreSQL, MongoDB, Keycloak, FastAPI/Express y Swagger con arquitectura cliente-servidor | - | 🟢 Concluida |
+
+---
+
+## 🧩 Diagramas de Arquitectura
+
+Diagramas interactivos generados con **Archify** (SVG embebido + tema claro/oscuro):
+
+| Práctica | Diagrama | Descripción |
+| :--- | :--- | :--- |
+| **5** | [Arquitectura · Caja de Widgets](./Practica5/arquitectura/arquitectura-practica05.html) | Arranque, estado Riverpod, rutas GoRouter y despliegue multiplataforma |
 
 ---
 
