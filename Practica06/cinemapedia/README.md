@@ -137,12 +137,27 @@ lateral y abrir otra película, el texto cambia al sistema de clasificación de 
 - **Dónde está en el código:** `getCertification` en `moviedb_datasource.dart`, el provider
   `movie_certification_provider.dart` y el formato en `lib/config/helpers/age_rating.dart`.
 
-## Logo
+## Logo e icono
 
 El logo de Cinemapedia es un **aro cian con un botón de reproducción (play)** dentro. Es el mismo
 dibujo en toda la app: barra superior, menú lateral y pantalla de carga. Se dibuja en código con
 `CustomPainter` (`lib/presentation/widgets/shared/cinemapedia_logo.dart`), por eso se ve nítido a
 cualquier tamaño y no depende de ninguna imagen externa.
+
+Ese mismo dibujo es el **icono de la aplicación** en todas las plataformas (Android, iOS, Windows,
+macOS y web), así que ya no se usa el logo de Flutter. Las imágenes se generan dibujando el logo en
+código con `tool/generate_icons.dart` y luego se reparten con `flutter_launcher_icons`:
+
+```powershell
+dart run tool/generate_icons.dart     # dibuja assets/icon/*.png y el logo del arranque
+dart run flutter_launcher_icons       # genera los iconos de cada plataforma
+```
+
+Solo hay que volver a ejecutarlos si cambias el dibujo del logo.
+
+Además, la **pantalla de arranque nativa** (la que aparece un instante antes de que Flutter dibuje)
+es negra con el logo al centro, así no hay ningún destello blanco al abrir la app; enseguida
+continúa el splash animado de Flutter.
 
 ## Paleta de colores
 
