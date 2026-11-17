@@ -249,11 +249,9 @@ catálogos sin código extra.
 
 ### Diagrama de arquitectura
 
-Diagrama interactivo generado con **Archify** (SVG embebido + tema claro/oscuro), con el arranque,
-el estado de Riverpod, el catálogo de películas y series (`MediaId`), las rutas de GoRouter y la
-persistencia con Isar:
+[Ver el diagrama interactivo en GitHub Pages](https://giova0412.github.io/mkdir-Practicas_DMI_230314/Practica06/arquitectura/arquitectura-practica06.html)
 
-**[Ver diagrama de arquitectura](../arquitectura/arquitectura-practica06.html)**
+![Diagrama de arquitectura](../arquitectura/arquitectura-practica06.visual-check.1440x900.dark.png)
 
 ## Requisitos
 

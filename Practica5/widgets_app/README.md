@@ -13,7 +13,7 @@ muestra un componente o interacción distinto.
 
 [Ver el diagrama interactivo en GitHub Pages](https://giova0412.github.io/mkdir-Practicas_DMI_230314/Practica5/arquitectura/arquitectura-practica05.html)
 
-![Diagrama de arquitectura](arquitectura/arquitectura-practica05.visual-check.1440x900.dark.png)
+![Diagrama de arquitectura](../arquitectura/arquitectura-practica05.visual-check.1440x900.dark.png)
 
 ## Funcionalidades
 
