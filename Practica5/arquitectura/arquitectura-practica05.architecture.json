@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Practica05 · Caja de Widgets",
+    "output": "arquitectura-practica05.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/giova0412/mkdir-Practicas_DMI_230314.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "08e6a74aab2061508ba8d56919dc57f38faafae9"
+    },
+    "views": [
+      { "id": "arranque", "label": "Arranque y navegación", "focus": ["arranque", "inicio", "rutas", "demos"], "note": "main.dart instala ProviderScope y abre MaterialApp.router; HomeScreen empuja rutas GoRouter." },
+      { "id": "tema", "label": "Estado y tema global", "focus": ["arranque", "estado", "demos"], "note": "Riverpod comparte AppTheme y el contador entre MainApp y las pantallas." },
+      { "id": "recursos", "label": "Imágenes y despliegue", "focus": ["demos", "imgremotas", "engine"], "note": "Las tarjetas y el scroll infinito cargan imágenes de picsum.photos." }
+    ]
+  },
+  "components": [
+    {
+      "id": "estado",
+      "type": "backend",
+      "label": "Estado y tema · Riverpod",
+      "sublabel": "AppTheme · temaNotifier",
+      "tag": "StateNotifierProvider · Material 3",
+      "pos": [500, 30],
+      "size": [250, 80],
+      "sources": [
+        { "path": "Practica5/widgets_app/lib/presentation/providers/tema_provider.dart", "line": 8, "label": "temaNotifierProvider" },
+        { "path": "Practica5/widgets_app/lib/presentation/providers/contador_provider.dart", "line": 1, "label": "contadorProvider" },
+        { "path": "Practica5/widgets_app/lib/config/theme/app_theme.dart", "line": 18, "label": "class AppTheme" }
+      ]
+    },
+    {
+      "id": "arranque",
+      "type": "frontend",
+      "label": "Arranque · main.dart",
+      "sublabel": "ProviderScope · MainApp",
+      "tag": "MaterialApp.router · runApp",
+      "pos": [30, 150],
+      "size": [215, 84],
+      "sources": [
+        { "path": "Practica5/widgets_app/lib/main.dart", "line": 7, "label": "main · ProviderScope" }
+      ]
+    },
+    {
+      "id": "inicio",
+      "type": "frontend",
+      "label": "Inicio · HomeScreen",
+      "sublabel": "MenuLateral · Drawer",
+      "tag": "ListView · appMenuItems",
+      "pos": [275, 150],
+      "size": [215, 84],
+      "sources": [
+        { "path": "Practica5/widgets_app/lib/presentation/screens/home/home_screen.dart", "line": 6, "label": "HomeScreen" },
+        { "path": "Practica5/widgets_app/lib/presentation/widgets/menu_lateral.dart", "line": 5, "label": "MenuLateral" }
+      ]
+    },
+    {
+      "id": "rutas",
+      "type": "backend",
+      "label": "Rutas · GoRouter",
+      "sublabel": "initialLocation: /",
+      "tag": "11 GoRoute registrados",
+      "pos": [520, 150],
+      "size": [195, 84],
+      "sources": [
+        { "path": "Practica5/widgets_app/lib/config/router/app_router.dart", "line": 5, "label": "appRouter" }
+      ]
+    },
+    {
+      "id": "demos",
+      "type": "frontend",
+      "label": "Pantallas de demostración",
+      "sublabel": "botones · tarjetas · controles",
+      "tag": "contador · animación · scroll · tema",
+      "pos": [745, 150],
+      "size": [205, 92],
+      "sources": [
+        { "path": "Practica5/widgets_app/lib/presentation/screens/screens.dart", "line": 1, "label": "barrel de pantallas" }
+      ]
+    },
+    {
+      "id": "imgremotas",
+      "type": "external",
+      "label": "picsum.photos",
+      "sublabel": "Tarjetas · Scroll",
+      "tag": "Image.network",
+      "pos": [980, 150],
+      "size": [215, 84]
+    },
+    {
+      "id": "engine",
+      "type": "backend",
+      "label": "Flutter Engine",
+      "sublabel": "Dart VM · Impeller · Raster",
+      "tag": "AOT/JIT · Platform Channels",
+      "pos": [30, 300],
+      "size": [215, 80]
+    },
+    {
+      "id": "android",
+      "type": "cloud",
+      "label": "Android",
+      "sublabel": "Android Embedding",
+      "tag": "APK/AAB",
+      "pos": [30, 430],
+      "size": [182, 76],
+      "sources": [
+        { "path": "Practica5/widgets_app/android/app/src/main/AndroidManifest.xml", "line": 1, "label": "AndroidManifest.xml" }
+      ]
+    },
+    {
+      "id": "ios",
+      "type": "cloud",
+      "label": "iOS",
+      "sublabel": "UIKit · Runner",
+      "tag": "IPA · Info.plist",
+      "pos": [230, 430],
+      "size": [182, 76],
+      "sources": [
+        { "path": "Practica5/widgets_app/ios/Runner/Info.plist", "line": 1, "label": "Info.plist" }
+      ]
+    },
+    {
+      "id": "web",
+      "type": "external",
+      "label": "Web",
+      "sublabel": "CanvasKit/WebGL",
+      "tag": "manifest.json",
+      "pos": [430, 430],
+      "size": [182, 76],
+      "sources": [
+        { "path": "Practica5/widgets_app/web/manifest.json", "line": 1, "label": "web manifest" }
+      ]
+    },
+    {
+      "id": "windows",
+      "type": "cloud",
+      "label": "Windows",
+      "sublabel": "Win32 Runner",
+      "tag": "EXE · CMake",
+      "pos": [630, 430],
+      "size": [182, 76],
+      "sources": [
+        { "path": "Practica5/widgets_app/windows/runner/Runner.rc", "line": 1, "label": "Runner.rc" }
+      ]
+    },
+    {
+      "id": "macos",
+      "type": "cloud",
+      "label": "macOS",
+      "sublabel": "Cocoa/AppKit Runner",
+      "tag": "App Bundle",
+      "pos": [830, 430],
+      "size": [182, 76],
+      "sources": [
+        { "path": "Practica5/widgets_app/macos/Runner/Info.plist", "line": 1, "label": "Info.plist" }
+      ]
+    },
+    {
+      "id": "linux",
+      "type": "cloud",
+      "label": "Linux",
+      "sublabel": "GTK/GLFW embedding",
+      "tag": "Binario · CMake",
+      "pos": [1030, 430],
+      "size": [182, 76],
+      "sources": [
+        { "path": "Practica5/widgets_app/linux/runner/my_application.h", "line": 1, "label": "my_application.h" }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Aplicación Flutter · widgets_app",
+      "wraps": ["estado", "arranque", "inicio", "rutas", "demos", "imgremotas", "engine"],
+      "pad": 24
+    },
+    {
+      "kind": "region",
+      "label": "Destinos de despliegue · Flutter cross-platform",
+      "wraps": ["android", "ios", "web", "windows", "macos", "linux"],
+      "pad": 18
+    }
+  ],
+  "connections": [
+    { "id": "arranque_inicio", "from": "arranque", "to": "inicio", "label": "abre /", "variant": "emphasis", "labelAt": [260, 248] },
+    { "id": "inicio_rutas", "from": "inicio", "to": "rutas", "label": "push", "variant": "emphasis", "labelAt": [505, 250] },
+    { "id": "rutas_demos", "from": "rutas", "to": "demos", "label": "construye", "variant": "emphasis", "fromSide": "bottom", "toSide": "bottom", "via": [[617.5, 272], [847.5, 272]], "labelAt": [732, 290] },
+    { "id": "demos_imgremotas", "from": "demos", "to": "imgremotas", "label": "Image.network", "fromSide": "right", "toSide": "left", "labelAt": [965, 255] },
+    { "id": "estado_arranque", "from": "estado", "to": "arranque", "label": "watch · getTheme()", "variant": "emphasis", "fromSide": "left", "toSide": "top", "via": [[137.5, 70]], "labelAt": [300, 88] },
+    { "id": "arranque_engine", "from": "arranque", "to": "engine", "label": "Widget Tree → Frame", "fromSide": "bottom", "toSide": "top", "labelAt": [250, 267] },
+    { "id": "engine_android", "from": "engine", "to": "android", "fromSide": "bottom", "toSide": "top" },
+    { "id": "engine_ios", "from": "engine", "to": "ios", "fromSide": "bottom", "toSide": "top" },
+    { "id": "engine_web", "from": "engine", "to": "web", "fromSide": "bottom", "toSide": "top" },
+    { "id": "engine_windows", "from": "engine", "to": "windows", "fromSide": "bottom", "toSide": "top" },
+    { "id": "engine_macos", "from": "engine", "to": "macos", "fromSide": "bottom", "toSide": "top" },
+    { "id": "engine_linux", "from": "engine", "to": "linux", "fromSide": "bottom", "toSide": "top" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Navegación",
+      "items": [
+        "main.dart envuelve MainApp en ProviderScope y abre MaterialApp.router con appRouter.",
+        "HomeScreen y MenuLateral leen appMenuItems; GoRouter registra 11 destinos desde /."
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Estado y tema",
+      "items": [
+        "temaNotifierProvider (StateNotifier) guarda AppTheme; TemaScreen cambia color o modo oscuro.",
+        "ContadorScreen usa contadorProvider; AppTheme.getTheme() aplica Material 3 con paletaColores."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Despliegue cross-platform",
+      "items": [
+        "El mismo código Dart compila a Android, iOS, Web, Windows, macOS y Linux.",
+        "El runtime usa Flutter Engine y un embedding por plataforma; assets y red son comunes a la UI."
+      ]
+    }
+  ]
+}
