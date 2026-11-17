@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Practica06 · Cinemapedia",
+    "output": "arquitectura-practica06.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/giova0412/mkdir-Practicas_DMI_230314.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "53a6c3e720a91a8e3afdb0cc72435118d26d93fc"
+    },
+    "views": [
+      { "id": "camino", "label": "Camino principal", "focus": ["arranque", "pantallas", "providers", "repositorio", "datasources", "tmdb"], "note": "main.dart abre MaterialApp.router; las vistas leen estado de Riverpod, que baja por el repositorio hasta el API de The Movie DB." },
+      { "id": "series", "label": "Peliculas y series", "focus": ["pantallas", "providers", "datasources", "mediaid", "tmdb"], "note": "MediaId y TvMapper dan a las series un id negativo para reutilizar el detalle, favoritos y similares de las peliculas." },
+      { "id": "persistencia", "label": "Favoritos e idioma", "focus": ["providers", "prefs", "repositorio", "isar"], "note": "Isar guarda los favoritos separados por catalogo; shared_preferences recuerda el idioma elegido." }
+    ]
+  },
+  "components": [
+    {
+      "id": "arranque",
+      "type": "frontend",
+      "label": "Arranque · main.dart",
+      "sublabel": "ProviderScope · MainApp",
+      "tag": "runApp · prefs",
+      "pos": [30, 150],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/main.dart", "label": "main · ProviderScope" }
+      ]
+    },
+    {
+      "id": "pantallas",
+      "type": "frontend",
+      "label": "Pantallas y vistas",
+      "sublabel": "Home · Favoritos · Detalle",
+      "tag": "ConsumerWidget · Material 3",
+      "pos": [233, 150],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/presentation/views/movies/home_view.dart", "label": "HomeView" },
+        { "path": "Practica06/cinemapedia/lib/presentation/views/movies/favorites_view.dart", "label": "FavoritesView" }
+      ]
+    },
+    {
+      "id": "providers",
+      "type": "backend",
+      "label": "Estado · Riverpod",
+      "sublabel": "MoviesNotifier · Settings",
+      "tag": "StateNotifier · State",
+      "pos": [436, 150],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/presentation/providers/providers.dart", "label": "barrel de providers" },
+        { "path": "Practica06/cinemapedia/lib/presentation/providers/series/series_providers.dart", "label": "seriesProviders" },
+        { "path": "Practica06/cinemapedia/lib/presentation/providers/settings/catalog_type_provider.dart", "label": "catalogTypeProvider" }
+      ]
+    },
+    {
+      "id": "repositorio",
+      "type": "backend",
+      "label": "Repositorio",
+      "sublabel": "MoviesRepository",
+      "tag": "contratos + Impl",
+      "pos": [639, 150],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/domain/repositories/movies_repository.dart", "label": "MoviesRepository" },
+        { "path": "Practica06/cinemapedia/lib/infrastructure/repositories/movie_repository_impl.dart", "label": "MovieRepositoryImpl" }
+      ]
+    },
+    {
+      "id": "datasources",
+      "type": "backend",
+      "label": "DataSources",
+      "sublabel": "MovieDB · Actor · Isar",
+      "tag": "dio · mappers",
+      "pos": [842, 150],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/infrastructure/datasources/moviedb_datasource.dart", "label": "MovieDBDatasource" },
+        { "path": "Practica06/cinemapedia/lib/infrastructure/datasources/actor_moviedb_datasource.dart", "label": "ActorMovieDBDatasource" }
+      ]
+    },
+    {
+      "id": "tmdb",
+      "type": "external",
+      "label": "The Movie DB API",
+      "sublabel": "/movie · /tv · /search",
+      "tag": "HTTPS · 5 idiomas",
+      "pos": [1045, 150],
+      "size": [175, 84]
+    },
+    {
+      "id": "router",
+      "type": "backend",
+      "label": "Rutas · GoRouter",
+      "sublabel": "/splash · /home/:page",
+      "tag": "movie/:id · push",
+      "pos": [233, 360],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/config/router/app_router.dart", "label": "appRouter" }
+      ]
+    },
+    {
+      "id": "prefs",
+      "type": "database",
+      "label": "shared_preferences",
+      "sublabel": "idioma recordado",
+      "tag": "getString · setString",
+      "pos": [436, 360],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/presentation/providers/settings/shared_preferences_provider.dart", "label": "sharedPreferencesProvider" },
+        { "path": "Practica06/cinemapedia/lib/presentation/providers/language/language_provider.dart", "label": "languageProvider" }
+      ]
+    },
+    {
+      "id": "isar",
+      "type": "database",
+      "label": "Isar · favoritos",
+      "sublabel": "coleccion local",
+      "tag": "offline · local",
+      "pos": [639, 360],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/infrastructure/datasources/isar_datasource.dart", "label": "IsarDatasource" }
+      ]
+    },
+    {
+      "id": "mediaid",
+      "type": "backend",
+      "label": "MediaId · TvMapper",
+      "sublabel": "series con id negativo",
+      "tag": "helpers · mappers",
+      "pos": [842, 360],
+      "size": [175, 84],
+      "sources": [
+        { "path": "Practica06/cinemapedia/lib/config/helpers/media_id.dart", "label": "MediaId" },
+        { "path": "Practica06/cinemapedia/lib/infrastructure/mappers/tv_mapper.dart", "label": "TvMapper" }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Aplicacion Flutter · cinemapedia",
+      "wraps": ["arranque", "pantallas", "providers", "repositorio", "datasources", "tmdb", "router", "prefs", "isar", "mediaid"],
+      "pad": 24
+    }
+  ],
+  "connections": [
+    { "id": "arranque_pantallas", "from": "arranque", "to": "pantallas", "label": "abre", "variant": "emphasis", "fromSide": "right", "toSide": "left", "labelAt": [219, 250] },
+    { "id": "pantallas_providers", "from": "pantallas", "to": "providers", "label": "watch · read", "variant": "emphasis", "fromSide": "right", "toSide": "left", "labelAt": [422, 250] },
+    { "id": "providers_repositorio", "from": "providers", "to": "repositorio", "label": "lee datos", "variant": "emphasis", "fromSide": "right", "toSide": "left", "labelAt": [625, 250] },
+    { "id": "repositorio_datasources", "from": "repositorio", "to": "datasources", "label": "delega", "variant": "emphasis", "fromSide": "right", "toSide": "left", "labelAt": [828, 250] },
+    { "id": "datasources_tmdb", "from": "datasources", "to": "tmdb", "label": "/movie · /tv", "variant": "emphasis", "fromSide": "right", "toSide": "left", "labelAt": [1031, 250] },
+    { "id": "pantallas_router", "from": "pantallas", "to": "router", "label": "push", "fromSide": "bottom", "toSide": "top", "labelAt": [320, 300] },
+    { "id": "providers_prefs", "from": "providers", "to": "prefs", "label": "idioma", "fromSide": "bottom", "toSide": "top", "labelAt": [523, 300] },
+    { "id": "repositorio_isar", "from": "repositorio", "to": "isar", "label": "favoritos", "fromSide": "bottom", "toSide": "top", "labelAt": [726, 300] },
+    { "id": "datasources_mediaid", "from": "datasources", "to": "mediaid", "label": "MediaId · TvMapper", "fromSide": "bottom", "toSide": "top", "labelAt": [929, 300] }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Arranque y navegacion",
+      "items": [
+        "main.dart instala ProviderScope, carga shared_preferences y abre MaterialApp.router con appRouter.",
+        "GoRouter expone /splash, /home/:page y movie/:id; las vistas empujan rutas con push."
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Estado y datos",
+      "items": [
+        "Riverpod comparte las listas de peliculas y series mediante StateNotifierProvider.",
+        "El repositorio delega en los datasources, que consultan The Movie DB en 5 idiomas con respaldo en ingles."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Peliculas, series y persistencia",
+      "items": [
+        "MediaId y TvMapper dan a las series un id negativo para reutilizar detalle, favoritos y similares.",
+        "Isar guarda los favoritos separados por catalogo; shared_preferences recuerda el idioma elegido."
+      ]
+    }
+  ]
+}
