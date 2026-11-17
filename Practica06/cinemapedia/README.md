@@ -4,8 +4,8 @@
 
 **Tu enciclopedia de cine, con estilo neón.**
 
-Descubre películas de acción y aventura, revisa el detalle de cada una y guarda tus favoritas,
-en 5 idiomas.
+Descubre películas de acción y aventura **y series de TV**, revisa el detalle de cada una y guarda
+tus favoritas, en 5 idiomas.
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-3.10+-0175C2?logo=dart&logoColor=white)
@@ -17,17 +17,18 @@ en 5 idiomas.
 
 ## Sobre la app
 
-**Cinemapedia** es una aplicación de películas hecha con Flutter que consume la API de
-[The Movie DB](https://www.themoviedb.org/). Muestra un catálogo de películas con el detalle de
-cada una, incluyendo reparto, tráilers y películas similares.
+**Cinemapedia** es una aplicación de cine y series hecha con Flutter que consume la API de
+[The Movie DB](https://www.themoviedb.org/). Muestra un catálogo de **películas** o de **series de
+TV** (se cambia desde **Configuración**, en el menú lateral) con el detalle de cada una, incluyendo
+reparto, tráilers y títulos similares.
 
 La app está disponible en **5 idiomas** (español de México, inglés, alemán, chino y árabe) y se
 cambia desde el menú lateral: se traducen tanto los textos de la app como los datos de las
-películas que llegan de la API.
+películas y series que llegan de la API.
 
 > **Identidad visual propia:** tema **cian neón sobre negro**, logo de **aro con botón de play**,
-> banderas de idioma y clasificaciones de edad **circulares**. El catálogo se arma con películas de
-> **acción y aventura**.
+> banderas de idioma y clasificaciones de edad **circulares**. El catálogo de películas se arma con
+> títulos de **acción y aventura**.
 
 ## Capturas
 
@@ -53,18 +54,36 @@ películas que llegan de la API.
 - **Pantalla de carga animada:** el logo (aro con botón de play) se dibuja sobre fondo negro,
   aparece el nombre y hace zoom hacia la pantalla principal. Mientras cargan las películas, el logo
   late en el centro de la pantalla.
-- **Carrusel de estrenos** con autoplay, flechas para cambiar de película y, sobre cada imagen,
-  el título con una descripción corta.
-- **Listas horizontales** con scroll infinito: _En cines_, _Próximamente_ y _Mejor calificadas_.
+- **Configuración en el menú lateral:** elige **Contenido** (_Películas_ o _Series_) y el **Idioma**
+  de la app (ver [Configuración](#configuración)).
+- **Carrusel de estrenos** con autoplay, flechas para cambiar de título y, sobre cada imagen,
+  el nombre con una descripción corta.
+- **Listas horizontales** con scroll infinito: _En cines_, _Próximamente_ y _Mejor calificadas_
+  (con series cambian a _En emisión_, _Se emiten hoy_ y _Mejor calificadas_).
 - **Populares** en una vista de cuadrícula tipo masonry.
-- **Detalle de película:** sinopsis, géneros, reparto, tráilers de YouTube, películas similares y
+- **Detalle del título:** sinopsis, géneros, reparto, tráilers de YouTube, títulos similares y
   clasificación de edad según el país del idioma elegido (ver [Clasificación de edad](#clasificación-de-edad)).
-- **Búsqueda** de películas con sugerencias en tiempo real.
-- **Favoritos** guardados en el dispositivo (base de datos local con Isar).
+- **Búsqueda** de películas o series con sugerencias en tiempo real.
+- **Favoritos** guardados en el dispositivo (base de datos local con Isar), separados por
+  películas y series.
 - **Menú lateral** que se abre con el botón de la barra o deslizando desde el borde de la pantalla.
 - **Selector de idioma** con banderas circulares: español, inglés, alemán, chino y árabe
   (ver [Idiomas de la app](#idiomas-de-la-app)).
 - **Tema oscuro** con fondo negro puro y acentos **cian neón**.
+
+## Configuración
+
+El menú lateral tiene un apartado de **Configuración**, abierto por defecto, con dos opciones:
+
+- **Contenido:** cambia entre **Películas** y **Series**. Al cambiar se recargan solas todas las
+  listas, el carrusel, la búsqueda, los favoritos y la vista de populares del catálogo elegido. Las
+  series se piden a los endpoints `/tv/*` de The Movie DB (_En emisión_, _Se emiten hoy_,
+  _Populares_, _Mejor calificadas_).
+- **Idioma:** español, inglés, alemán, chino y árabe. El idioma elegido **se recuerda** en el
+  dispositivo (ver [Idiomas de la app](#idiomas-de-la-app)).
+
+En el código, estas dos opciones son los providers `catalogTypeProvider` y `languageProvider`
+(este último guarda el idioma con `shared_preferences`).
 
 ## Catálogo
 
@@ -80,13 +99,31 @@ persecuciones). Cada sección conserva su significado original:
 | Mejor calificadas | Acción y aventura mejor calificadas de todos los tiempos |
 | Populares | Acción y aventura ordenadas por popularidad |
 
-La búsqueda, las películas similares y los favoritos siguen funcionando igual que siempre.
+La búsqueda, los títulos similares y los favoritos siguen funcionando igual que siempre.
+
+El catálogo de **series** usa las listas propias de The Movie DB, con las mismas secciones:
+
+| Sección | Endpoint |
+| ------- | -------- |
+| En emisión | `/tv/on_the_air` |
+| Se emiten hoy | `/tv/airing_today` |
+| Mejor calificadas | `/tv/top_rated` |
+| Populares | `/tv/popular` |
+
+### Películas y series en el mismo código
+
+Para no duplicar pantallas, rutas, favoritos, tráilers o reparto, una serie se maneja dentro de la
+app como un `Movie` con el **id en negativo** (`-id de TMDB`), porque TMDB puede repetir el mismo
+número de id entre una película y una serie. La clase `MediaId`
+(`lib/config/helpers/media_id.dart`) dice si un id es de serie y permite volver al id real de la
+API; el mapper `TvMapper` (`lib/infrastructure/mappers/tv_mapper.dart`) convierte la respuesta de
+`/tv/*` a la entidad `Movie`.
 
 ## Idiomas de la app
 
 Al elegir un idioma en el menú lateral cambia **todo**: los textos de la app (menú inferior,
 secciones, búsqueda, favoritos, pantalla de carga, detalle) y los datos de la API (títulos,
-sinopsis, géneros, reparto y tráilers). Las películas se recargan solas con el nuevo idioma.
+sinopsis, géneros, reparto y tráilers). Las películas y series se recargan solas con el nuevo idioma.
 
 | Bandera | Idioma  | Código API |
 | :-----: | ------- | :--------: |
@@ -103,7 +140,8 @@ sinopsis, géneros, reparto y tráilers). Las películas se recargan solas con e
   inglés y la usa como respaldo.
 - **Diseño de izquierda a derecha:** la pantalla no se voltea, ni siquiera en árabe.
 - **Fechas:** el formato de fecha del detalle y la etiqueta del día en _En cines_ siguen el idioma elegido.
-- El idioma elegido no se guarda: al cerrar la app vuelve a español (MX).
+- **El idioma elegido se recuerda:** se guarda en el dispositivo con `shared_preferences`, así que al
+  volver a abrir la app arranca en el último idioma que elegiste (por defecto, español de México).
 - Los favoritos conservan el título y la sinopsis en el idioma en que se guardaron.
 
 <details>
@@ -119,20 +157,24 @@ sinopsis, géneros, reparto y tráilers). Las películas se recargan solas con e
 
 ## Clasificación de edad
 
-En el detalle de cada película, debajo de la fecha de estreno, se muestra la clasificación de edad
-**del país del idioma elegido**. La etiqueta es un **círculo cian**: al cambiar el idioma en el menú
-lateral y abrir otra película, el texto cambia al sistema de clasificación de ese país.
+En el detalle de cada película o serie, debajo de la fecha de estreno, se muestra la clasificación
+de edad **del país del idioma elegido**. La etiqueta es un **círculo cian**: al cambiar el idioma en
+el menú lateral y abrir otro título, el texto cambia al sistema de clasificación de ese país.
 
 | País | Sistema | Cómo se ve |
 | :--: | ------- | ---------- |
 | MX | Clasificación mexicana | `AA`, `A`, `B`, `B15`, `C`, `D` |
-| US | MPA | `G`, `PG`, `PG-13`, `R`, `NC-17` |
+| US | MPA (películas) / TV Parental (series) | `G`, `PG`, `PG-13`, `R`, `NC-17` / `TV-14`, `TV-MA` |
 | DE | FSK | `FSK 0`, `FSK 6`, `FSK 12`, `FSK 16`, `FSK 18` |
-| CN / EG | Sin dato en The Movie DB (normalmente) | `NR` |
+| CN | Sin dato en The Movie DB (normalmente) | `NR` |
+| EG | Equivalencia de EE. UU. | `General`, `+12`, `+16`, `+18`, `BN` |
 
-- **De dónde sale:** de `/movie/{id}/release_dates` de The Movie DB. Se toma la clasificación del
-  país y se prefiere la del estreno en cines.
-- **Sin clasificación:** si el país no tiene dato (o la película es muy nueva), se muestra **NR**
+- **De dónde sale:** de `/movie/{id}/release_dates` para películas y de `/tv/{id}/content_ratings`
+  para series. Se toma la clasificación del país y, en películas, se prefiere la del estreno en cines.
+- **Egipto (EG):** The Movie DB no maneja ese país, así que se usa la clasificación de EE. UU. como
+  equivalente (`General`, `+12`, `+16`, `+18`). El prefijo **BN** (prohibido) se reserva para los
+  títulos vetados, que se agregan a mano en la lista `AgeRatings.egyptBannedIds`.
+- **Sin clasificación:** si el país no tiene dato (o el título es muy nuevo), se muestra **NR**
   (sin clasificar).
 - **Dónde está en el código:** `getCertification` en `moviedb_datasource.dart`, el provider
   `movie_certification_provider.dart` y el formato en `lib/config/helpers/age_rating.dart`.
@@ -179,6 +221,7 @@ continúa el splash animado de Flutter.
 | Navegación           | `go_router`                      |
 | Peticiones HTTP      | `dio`                            |
 | Base de datos local  | `isar_community`                 |
+| Preferencias         | `shared_preferences`             |
 | Carrusel             | `card_swiper`                    |
 | Animaciones          | `animate_do`                     |
 | Cuadrícula           | `flutter_staggered_grid_view`    |
@@ -194,12 +237,15 @@ La app se divide en capas:
 - **Presentación y estado:** pantallas, vistas, widgets y providers de Riverpod (`lib/presentation/`).
 - **Dominio:** entidades, contratos de datasources y repositorios (`lib/domain/`).
 - **Infraestructura:** implementación de datasources y repositorios, modelos y mappers
-  (`lib/infrastructure/`).
-- **Servicios externos:** The Movie DB, imágenes de TMDB y YouTube.
-- **Almacenamiento local** con Isar (favoritos).
+  (`lib/infrastructure/`), incluido `TvMapper` para las series.
+- **Servicios externos:** The Movie DB (películas en `/movie/*` y series en `/tv/*`), imágenes de
+  TMDB y YouTube.
+- **Almacenamiento local:** Isar (favoritos) y `shared_preferences` (idioma elegido).
 
-Los providers piden las películas al repositorio, que las trae de The Movie DB y las convierte a
-entidades con mappers.
+Los providers piden las películas o series al repositorio, que las trae de The Movie DB y las
+convierte a entidades con mappers. Como una serie se representa como un `Movie` con id negativo,
+toda la interfaz (detalle, favoritos, búsqueda, reparto, tráilers y similares) sirve para ambos
+catálogos sin código extra.
 
 ## Requisitos
 

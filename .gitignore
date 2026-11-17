@@ -30,6 +30,9 @@
 .DS_Store
 Thumbs.db
 
+# Repositorio de referencia local (no forma parte de la entrega)
+Practicas_DMI_230417-main/
+
 # Large video assets (exceed GitHub's 100MB file size limit)
 # Use Git LFS or external storage for these files
 **/assets/videos/*.mp4
