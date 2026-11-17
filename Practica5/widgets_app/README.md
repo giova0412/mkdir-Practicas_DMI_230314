@@ -77,12 +77,22 @@ navegación.
   <tr>
     <th align="center">Scroll infinito</th>
     <th align="center">Personalización del tema</th>
-    <th></th>
+    <th align="center">Contador con Riverpod</th>
   </tr>
   <tr>
     <td align="center"><img src="../capturas/4.png" alt="Lista de imágenes con scroll infinito" width="190"/></td>
-    <td align="center"><img src="../capturas/image.png" alt="Modo oscuro y selector de color de acento" width="190"/></td>
-    <td></td>
+    <td align="center"><img src="../capturas/6.png" alt="Modo oscuro y selector de color de acento" width="190"/></td>
+    <td align="center"><img src="../capturas/7.png" alt="Contador reactivo con Riverpod" width="190"/></td>
+  </tr>
+  <tr>
+    <th align="center">Botones Material 3</th>
+    <th align="center">Tarjetas</th>
+    <th align="center">SnackBar y diálogos</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="../capturas/8.png" alt="Variantes de botones Material 3" width="190"/></td>
+    <td align="center"><img src="../capturas/9.png" alt="Tarjetas con distintos niveles de elevación" width="190"/></td>
+    <td align="center"><img src="../capturas/10.png" alt="Mensajes SnackBar y opciones de diálogo" width="190"/></td>
   </tr>
 </table>
 
