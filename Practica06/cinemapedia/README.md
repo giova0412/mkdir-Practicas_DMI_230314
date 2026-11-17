@@ -247,6 +247,14 @@ convierte a entidades con mappers. Como una serie se representa como un `Movie` 
 toda la interfaz (detalle, favoritos, búsqueda, reparto, tráilers y similares) sirve para ambos
 catálogos sin código extra.
 
+### Diagrama de arquitectura
+
+Diagrama interactivo generado con **Archify** (SVG embebido + tema claro/oscuro), con el arranque,
+el estado de Riverpod, el catálogo de películas y series (`MediaId`), las rutas de GoRouter y la
+persistencia con Isar:
+
+**[Ver diagrama de arquitectura](../arquitectura/arquitectura-practica06.html)**
+
 ## Requisitos
 
 - **Flutter estable reciente** (Dart ^3.10, Gradle 9.3.1, AGP 9.1.0, Kotlin 2.4.0). Si tu Flutter es
