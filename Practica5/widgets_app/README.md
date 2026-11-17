@@ -63,25 +63,28 @@ navegación.
 
 ## Evidencia de funcionamiento
 
-> _Espacio reservado para las capturas de la aplicación ejecutándose en un dispositivo
-> Android físico. Se agregarán en `/Practica5/images/` (numeradas 1.jpeg … 11.jpeg)._
-
-<!--
-Cuando tengas las capturas, reemplaza este bloque por la tabla:
-
 <table>
   <tr>
-    <th align="center">Inicio y navegación</th>
-    <th align="center">Demostraciones de widgets</th>
-    <th align="center">Tema y estado</th>
+    <th align="center">Tutorial</th>
+    <th align="center">Controles de interfaz</th>
+    <th align="center">Contenedor animado</th>
   </tr>
   <tr>
-    <td align="center"><img src="../images/1.jpeg" alt="Menú principal" width="250"/></td>
-    <td align="center"><img src="../images/2.jpeg" alt="Progreso" width="250"/></td>
-    <td align="center"><img src="../images/3.jpeg" alt="Cambio de tema" width="250"/></td>
+    <td align="center"><img src="../capturas/3.png" alt="Tutorial de bienvenida" width="190"/></td>
+    <td align="center"><img src="../capturas/2.png" alt="Interruptores, casillas y opciones de selección" width="190"/></td>
+    <td align="center"><img src="../capturas/image1.png" alt="Demostración del contenedor animado" width="190"/></td>
+  </tr>
+  <tr>
+    <th align="center">Scroll infinito</th>
+    <th align="center">Personalización del tema</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td align="center"><img src="../capturas/4.png" alt="Lista de imágenes con scroll infinito" width="190"/></td>
+    <td align="center"><img src="../capturas/image.png" alt="Modo oscuro y selector de color de acento" width="190"/></td>
+    <td></td>
   </tr>
 </table>
--->
 
 ## Cómo ejecutar el proyecto
 
