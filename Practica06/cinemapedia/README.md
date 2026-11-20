@@ -32,22 +32,35 @@ películas y series que llegan de la API.
 
 ## Capturas
 
-> **Nota:** las capturas se agregarán más adelante. Colócalas en `assets/images/` con los nombres
-> sugeridos abajo y descomenta las tablas.
-
-<!--
 <div align="center">
 
-| Pantalla de carga | Inicio | Menú lateral |
-| :---: | :---: | :---: |
-| <img src="assets/images/load.png" alt="Pantalla de carga" width="215" /> | <img src="assets/images/home.png" alt="Inicio" width="215" /> | <img src="assets/images/menu.png" alt="Menú lateral" width="215" /> |
+### Películas
 
-| Detalle de película | Elenco | Favoritos |
+| Inicio | Populares | Detalle |
 | :---: | :---: | :---: |
-| <img src="assets/images/detail.png" alt="Detalle" width="215" /> | <img src="assets/images/cast.png" alt="Elenco" width="215" /> | <img src="assets/images/favorites.png" alt="Favoritos" width="215" /> |
+| <img src="../capturas/inicio.png" alt="Inicio" width="215" /> | <img src="../capturas/papulares.png" alt="Populares" width="215" /> | <img src="../capturas/trailer%20y%20reparto.png" alt="Tráiler y reparto" width="215" /> |
+
+| Clasificación y puntuación | Favoritos |
+| :---: | :---: |
+| <img src="../capturas/calificacion%20y%20puntucaion.png" alt="Clasificación y puntuación" width="215" /> | <img src="../capturas/favoritos.png" alt="Favoritos" width="215" /> |
+
+### Series
+
+| Contenido de series | Series |
+| :---: | :---: |
+| <img src="../capturas/contenido%20de%20series.png" alt="Contenido de series" width="215" /> | <img src="../capturas/series.png" alt="Series" width="215" /> |
+
+| Series populares | Series favoritas |
+| :---: | :---: |
+| <img src="../capturas/series%20populares.png" alt="Series populares" width="215" /> | <img src="../capturas/series%20favoritas.png" alt="Series favoritas" width="215" /> |
+
+### Idiomas
+
+| English | Deutsch | 中文 | العربية |
+| :---: | :---: | :---: | :---: |
+| <img src="../capturas/idioma%20ingles%20.png" alt="English" width="215" /> | <img src="../capturas/aleman.png" alt="Deutsch" width="215" /> | <img src="../capturas/chino.png" alt="中文" width="215" /> | <img src="../capturas/arabe.png" alt="العربية" width="215" /> |
 
 </div>
--->
 
 ## Funcionalidades
 
