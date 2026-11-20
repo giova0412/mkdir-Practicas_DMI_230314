@@ -30,6 +30,14 @@ películas y series que llegan de la API.
 > banderas de idioma y clasificaciones de edad **circulares**. El catálogo de películas se arma con
 > títulos de **acción y aventura**.
 
+## Demo en vivo
+
+Pruébala en el navegador con **Appetize**, sin instalar nada:
+
+🔗 [https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i](https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i)
+
+[![Abrir en Appetize](https://img.shields.io/badge/Appetize-Cinemapedia-00E5FF?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i)
+
 ## Capturas
 
 <div align="center">
