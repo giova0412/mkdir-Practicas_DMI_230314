@@ -106,7 +106,7 @@ class AppStrings {
       'loading1': 'Cargando películas',
       'loading2': 'Comprando palomitas de maíz',
       'loading3': 'Cargando populares',
-      'loading4': 'Llamando a mi novia',
+      'loading4': 'toca esperar',
       'loading5': 'Ya mero...',
       'loading6': 'Esto está tardando más de lo esperado :(',
       'menu': 'Menú',
