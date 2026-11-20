@@ -34,9 +34,9 @@ películas y series que llegan de la API.
 
 Pruébala en el navegador con **Appetize**, sin instalar nada:
 
-🔗 [https://appetize.io/app/b_xlecwtbunrrsvg666fwknexctq](https://appetize.io/app/b_xlecwtbunrrsvg666fwknexctq)
+🔗 [https://appetize.io/app/b_ae3fi6vadak2behjxg4iwtzn34](https://appetize.io/app/b_ae3fi6vadak2behjxg4iwtzn34)
 
-[![Abrir en Appetize](https://img.shields.io/badge/Appetize-Cinemapedia-00E5FF?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_xlecwtbunrrsvg666fwknexctq)
+[![Abrir en Appetize](https://img.shields.io/badge/Appetize-Cinemapedia-00E5FF?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_ae3fi6vadak2behjxg4iwtzn34)
 
 ## Capturas
 
