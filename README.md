@@ -52,6 +52,16 @@ Diagramas interactivos generados con **Archify** (SVG embebido + tema claro/oscu
 
 ---
 
+## 🎮 Demo en Appetize
+
+Prueba la aplicación **Cinemapedia** (Práctica 6) directamente en el navegador, sin instalar nada:
+
+🔗 **URL:** [https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i](https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i)
+
+[![Abrir en Appetize](https://img.shields.io/badge/Appetize-Cinemapedia-00E5FF?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i)
+
+---
+
 <p align="center">
   <i>Desarrollado por <b>Giovany Raúl Pazos Cruz</b> - 2026</i>
 </p>
