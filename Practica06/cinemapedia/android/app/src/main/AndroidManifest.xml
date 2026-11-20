@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Necesario para las peticiones a The Movie DB en TODOS los builds,
+         incluido release (el de Appetize). El manifest de debug solo lo
+         aporta en modo desarrollo. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="cinemapedia"
         android:name="${applicationName}"
