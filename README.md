@@ -56,9 +56,9 @@ Diagramas interactivos generados con **Archify** (SVG embebido + tema claro/oscu
 
 Prueba la aplicación **Cinemapedia** (Práctica 6) directamente en el navegador, sin instalar nada:
 
-🔗 **URL:** [https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i](https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i)
+🔗 **URL:** [https://appetize.io/app/b_xlecwtbunrrsvg666fwknexctq](https://appetize.io/app/b_xlecwtbunrrsvg666fwknexctq)
 
-[![Abrir en Appetize](https://img.shields.io/badge/Appetize-Cinemapedia-00E5FF?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_phmbwxvip5giqo3oj4hr7qkc6i)
+[![Abrir en Appetize](https://img.shields.io/badge/Appetize-Cinemapedia-00E5FF?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_xlecwtbunrrsvg666fwknexctq)
 
 ---
 
